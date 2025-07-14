@@ -67,12 +67,18 @@ myAssistant.addTask("Finish JS homework");
 myAssistant.addTask("Move furniture at night");
 myAssistant.addTask("Feed Cat");
 
+//Report tasks
+myAssistant.reportTasks();
+
 // Report mood
 myAssistant.reportMood();
 
 // Complete tasks
 myAssistant.completeTask();
 myAssistant.completeTask();
+
+//Report tasks
+myAssistant.reportTasks();
 
 //Update mood
 myAssistant.reportMood();
