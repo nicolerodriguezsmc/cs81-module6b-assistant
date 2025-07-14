@@ -16,11 +16,18 @@ function PersonalAssistant(name) {
 PersonalAssistant.prototype.addTask = function(task) {
   this.tasks.push(task); //add task
   console.log("Task added: " + task);
+  //Updates the mood depending on how many tasks
+  this.updateMood();
 };
 
 //Function that reports mood
 PersonalAssistant.prototype.reportMood = function() {
   console.log("Mood: " + this.mood);
+};
+
+//Function that reports tasks
+PersonalAssistant.prototype.reportTasks = function() {
+  console.log("You have " + this.tasks.length + " tasks left.");
 };
 
 //Function that removes and logs a task
@@ -30,14 +37,24 @@ PersonalAssistant.prototype.completeTask = function() {
     let completedTask = this.tasks.shift();
     //Log the completed task
     console.log("Completing task: " + completedTask);
+    // Update mood based on the number of tasks remaining
+    this.updateMood();
   } else {
     //Log if there are no tasks left
     console.log("No tasks to complete.");
   }
 };
 
-
-
+//update the mood
+PersonalAssistant.prototype.updateMood = function() {
+  if (this.tasks.length === 0) {
+    this.mood = "accomplished";
+  } else if (this.tasks.length < 3) {
+    this.mood = "productive";
+  } else {
+    this.mood = "overwhelmed";
+  }
+};
 
 // Create a new PersonalAssistant
 let myAssistant = new PersonalAssistant("C3PO");
@@ -47,8 +64,15 @@ console.log("Hi! I'm " + myAssistant.name + ", your assistant.");
 
 // Add tasks
 myAssistant.addTask("Finish JS homework");
+myAssistant.addTask("Move furniture at night");
 myAssistant.addTask("Feed Cat");
+
 // Report mood
 myAssistant.reportMood();
-// Complete a task
+
+// Complete tasks
 myAssistant.completeTask();
+myAssistant.completeTask();
+
+//Update mood
+myAssistant.reportMood();
